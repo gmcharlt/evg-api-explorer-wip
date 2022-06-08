@@ -53,6 +53,10 @@ function fetchApiInfo() {
         methods.value = mungedInfo;
     });
 }
+
+function isArray(val: any): boolean {
+    return Array.isArray(val);
+}
 </script>
 
 <template>
@@ -101,13 +105,18 @@ function fetchApiInfo() {
                     <li v-if="method.stream">API streams its responses</li>
                     <li v-if="method.signature">
                         Description: {{ method.signature.desc }}<br>
-                        <span v-if="method.signature.params && method.signature.params.length > 0">
+                        <span v-if="method.signature.params">
                             Parameters
-                            <ol>
-                                <li v-for="param in method.signature.params">
-                                    {{ param.name }} <span v-if="param.desc">{{ param.desc }}</span>
-                                </li>
-                            </ol>
+                            <span v-if="isArray(method.signature.params) && method.signature.params.length > 0">
+                                <ol>
+                                    <li v-for="param in method.signature.params">
+                                        {{ param.name }} <span v-if="param.desc">{{ param.desc }}</span>
+                                    </li>
+                                </ol>
+                            </span>
+                            <span v-if="!isArray(method.signature.params)">
+                                <pre>{{ method.signature.params }}</pre>
+                            </span>
                         </span>
                         <span v-if="method.signature.return && method.signature.return.desc">
                             Return value: {{ method.signature.return.desc }}
