@@ -62,8 +62,10 @@ function isArray(val: any): boolean {
 <template>
     <ul>
         <li>Evergreen Host <input v-model="evgHost"></li>
+        <!--
         <li>Username <input v-model="username"></li>
         <li>Password <input v-model="password" type="password"></li>
+        -->
     </ul>
     <button @click="checkConnection">Connect to Evergreen</button>
     <div v-if="connectionOK">
