@@ -16,7 +16,7 @@ const methods = ref([]);
 
 let _baseUrl = '';
 
-function checkConnection() {
+function checkConnection(): void {
     _baseUrl = evgHost.value;
     if (!_baseUrl.match(/^https*:\/\//)) {
         _baseUrl = 'https://' + _baseUrl;
@@ -60,16 +60,16 @@ function isArray(val: any): boolean {
 </script>
 
 <template>
-    <ul>
-        <li>Evergreen Host <input v-model="evgHost"></li>
+    <div class="input-group">
+        <input v-model="evgHost" placeholder="Evergreen host" aria-label="Evergreen host" class="form-control">
         <!--
         <li>Username <input v-model="username"></li>
         <li>Password <input v-model="password" type="password"></li>
         -->
-    </ul>
-    <button @click="checkConnection">Connect to Evergreen</button>
-    <div v-if="connectionOK">
-        <select v-model="selectedService">
+        <button @click="checkConnection" class="btn btn-primary">Connect to Evergreen</button>
+    </div>
+    <div class="input-group" v-if="connectionOK">
+        <select v-model="selectedService" class="form-control" aria-label="Evergreen service">
             <option value="open-ils.acq">open-ils.acq</option>
             <option value="open-ils.actor">open-ils.actor</option>
             <option value="open-ils.auth">open-ils.auth</option>
@@ -91,8 +91,8 @@ function isArray(val: any): boolean {
             <option value="open-ils.vandelay">open-ils.vandelay</option>
             <option value="opensrf.math">opensrf.math</option>
         </select>
-        <input v-model="searchFilter">
-        <button @click="fetchApiInfo">Fetch API information</button>
+        <input v-model="searchFilter" class="form-control" placeholder="Method filter" aria-label="Method filter">
+        <button @click="fetchApiInfo" class="btn btn-info">Fetch API information</button>
     </div>
     <div v-if="numResults > 0">
         Result count is {{ numResults }}
