@@ -62,7 +62,7 @@ function isArray(val: any): boolean {
 </script>
 
 <template>
-    <nav class="navbar navbar-light bg-light sticky-top">
+    <nav class="navbar navbar-dark sticky-top" style="background-color: #007a54">
         <div class="container-md">
             <a class="navbar-brand">Evergreen API Explorer</a>
             <form class="d-flex">
