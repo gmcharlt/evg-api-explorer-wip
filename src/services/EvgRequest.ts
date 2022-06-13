@@ -1,3 +1,10 @@
+// declare globals taken from opensrf.js and friends
+// to keep the TypeScript compiler happy
+declare global {
+    var OpenSRF: any;
+    var OSRF_HTTP_TRANSLATOR: any;
+    var OSRF_TRANSPORT_TYPE_XHR: any;
+}
 export class EvgRequest {
     service: string;
     method: string;
